@@ -19,4 +19,8 @@ export default class FlappyBird {
     this.level.animate(this.ctx);
     this.bird.animate(this.ctx);
   }
+
+  play() {
+    
+  }
 }
