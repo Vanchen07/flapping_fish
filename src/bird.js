@@ -12,13 +12,14 @@ export default class Bird {
     }
 
     animate(ctx) {
+        this.move()
         this.drawBird(ctx);
-        //call this.move?
     }
 
     move() {
         let gravity = 0.5;
-        this.velocity = this.velocity + this.y + gravity;
+        this.y += this.velocity;
+        this.velocity += gravity;
     }
 
     flap() {
