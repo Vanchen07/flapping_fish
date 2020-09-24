@@ -130,7 +130,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _gam
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Level; });\nclass Level {\n  constructor(dimensions) {\n    this.dimensions = dimensions;\n    this.pipes = [];\n  }\n\n  drawBackground(ctx) {\n    ctx.fillStyle = \"lightseagreen\";\n    ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);\n  }\n\n  animate(ctx) {\n    this.drawBackground(ctx);\n  }\n}\n\n//# sourceURL=webpack:///./src/level.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Level; });\nclass Level {\n  constructor(dimensions) {\n    this.dimensions = dimensions;\n    // this.pipes = [];\n  }\n\n  drawBackground(ctx) {\n    ctx.fillStyle = \"lightseagreen\";\n    ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);\n  }\n\n  animate(ctx) {\n    this.drawBackground(ctx);\n  }\n}\n\n//# sourceURL=webpack:///./src/level.js?");
 
 /***/ })
 
