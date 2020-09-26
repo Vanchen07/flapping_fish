@@ -1,7 +1,7 @@
 export default class Level {
   constructor(dimensions) {
     this.dimensions = dimensions;
-    // this.pipes = [];
+    this.pipes = [this.x, this.x + 150];
   }
 
   drawBackground(ctx) {
