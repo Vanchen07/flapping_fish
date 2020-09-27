@@ -1,3 +1,9 @@
+
+const CONSTANTS = {
+    BIRD_WIDTH: 30,
+    BIRD_HEIGHT: 40
+}
+
 export default class Bird {
     constructor(dimensions) {
         this.velocity = 0;
@@ -8,7 +14,8 @@ export default class Bird {
 
     drawBird(ctx) {
         ctx.fillStyle = "yellow";
-        ctx.fillRect(this.x, this.y, 30, 40);
+        ctx.fillRect(this.x, this.y, CONSTANTS.BIRD_WIDTH, CONSTANTS.BIRD_HEIGHT);
+        // console.log(this.x, this.y)
     }
 
     animate(ctx) {
@@ -24,5 +31,14 @@ export default class Bird {
 
     flap() {
         this.velocity = -8;
+    }
+
+    getBounds() {
+        return ({
+            left: this.x,
+            right: this.x + CONSTANTS.BIRD_WIDTH,
+            top: this.y, 
+            bottom: this.y + CONSTANTS.BIRD_HEIGHT,
+        })
     }
 }
