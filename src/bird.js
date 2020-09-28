@@ -34,6 +34,13 @@ export default class Bird {
     }
 
     getBounds() {
+        // console.log({
+        //     left: this.x,
+        //     right: this.x + CONSTANTS.BIRD_WIDTH,
+        //     top: this.y,
+        //     bottom: this.y + CONSTANTS.BIRD_HEIGHT,
+        // })
+
         return ({
             left: this.x,
             right: this.x + CONSTANTS.BIRD_WIDTH,
@@ -43,8 +50,10 @@ export default class Bird {
     }
 
     outOfBounds() {
-        let overTop = this.y < 0;
-        let belowBottom = this.y + CONSTANTS.BIRD_HEIGHT > this.dimensions.height;
+        let bounds = this.getBounds();
+
+        let overTop = bounds.top < 0;
+        let belowBottom = bounds.bottom >= this.dimensions.height;
         // console.log("bird height", this.y + CONSTANTS.BIRD_HEIGHT)
         // console.log("height", this.dimensions.height)
         return overTop || belowBottom;

@@ -2,7 +2,7 @@ const CONSTANTS = {
   PIPE_SPEED: 2,
   // GAP_HEIGHT: 150,
   PIPE_WIDTH: 50,
-  EDGE_BUFFER: 150,
+  EDGE_BUFFER: 250,
   PIPE_SPACING: 220, //horizontal spacing btwn pipes
   WARM_UP_SECONDS: 1
 };
@@ -27,10 +27,10 @@ export default class Level {
     
     const pipe = {
       bottomPipe: {
-        bottom: this.dimensions.height,
         left: x,
-        right: CONSTANTS.PIPE_WIDTH + x,
+        right: x + CONSTANTS.PIPE_WIDTH,
         top: gapTop,
+        bottom: this.dimensions.height,
       }
     }
     
@@ -82,24 +82,25 @@ export default class Level {
 
   collidesWith(bird) {
     let collison = false;
+    
+    console.log("bird", bird)
 
     this.pipes.forEach((pipe) => {
       if (this.overlap(pipe.bottomPipe, bird)) collison = true
     })
 
+    console.log("collison", collison)
     return collison;
   }
 
   overlap(pipe, bird) {
-    if(pipe.left >= bird.right || pipe.right <= bird.left) {
-      return false;
-    }
+    if (bird.right >= pipe.left && bird.right <= pipe.right && bird.bottom >= pipe.top) {
+      console.log("overlap")
+      return true
+    } 
 
-    if (pipe.top <= bird.bottom || pipe.bottom <= bird.top) {
-      return false;
-    }
-    console.log("overelap")
-    return true;
+    return false;
+
   }
 }
 
