@@ -39,7 +39,7 @@ export default class Level {
     // if (pipe.bottomPipe.bottom - pipe.bottomPipe.top > 400) console.log("diff", pipe.bottomPipe.bottom - pipe.bottomPipe.top)
     // console.log("canvas", this.dimensions)
     // console.log("pipe", pipe)
-    console.log(pipe.bottomPipe.left)
+    // console.log(pipe.bottomPipe.left)
     return pipe
   }
 
@@ -80,8 +80,26 @@ export default class Level {
     })
   }
 
-  collidesWith() {
+  collidesWith(bird) {
+    let collison = false;
 
+    this.pipes.forEach((pipe) => {
+      if (this.overlap(pipe.bottomPipe, bird)) collison = true
+    })
+
+    return collison;
+  }
+
+  overlap(pipe, bird) {
+    if(pipe.left >= bird.right || pipe.right <= bird.left) {
+      return false;
+    }
+
+    if (pipe.top <= bird.bottom || pipe.bottom <= bird.top) {
+      return false;
+    }
+    console.log("overelap")
+    return true;
   }
 }
 

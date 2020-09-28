@@ -41,4 +41,12 @@ export default class Bird {
             bottom: this.y + CONSTANTS.BIRD_HEIGHT,
         })
     }
+
+    outOfBounds() {
+        let overTop = this.y < 0;
+        let belowBottom = this.y + CONSTANTS.BIRD_HEIGHT > this.dimensions.height;
+        // console.log("bird height", this.y + CONSTANTS.BIRD_HEIGHT)
+        // console.log("height", this.dimensions.height)
+        return overTop || belowBottom;
+    }
 }
