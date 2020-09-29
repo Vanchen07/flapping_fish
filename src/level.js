@@ -44,7 +44,7 @@ export default class Level {
   }
 
   drawBackground(ctx) { 
-    ctx.fillStyle = "lightseagreen";
+    ctx.fillStyle = "lightblue";
     ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
   }
 
@@ -83,13 +83,13 @@ export default class Level {
   collidesWith(bird) {
     let collison = false;
     
-    console.log("bird", bird)
+    // console.log("bird", bird)
 
     this.pipes.forEach((pipe) => {
       if (this.overlap(pipe.bottomPipe, bird)) collison = true
     })
 
-    console.log("collison", collison)
+    // console.log("collison", collison)
     return collison;
   }
 
