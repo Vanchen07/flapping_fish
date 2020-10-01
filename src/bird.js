@@ -2,7 +2,7 @@
 const CONSTANTS = {
     BIRD_WIDTH: 30,
     BIRD_HEIGHT: 40,
-    scale: 2.5,
+    scale: 3,
     width: 32,
     height: 32,
 }
@@ -15,7 +15,7 @@ export default class Bird {
         this.y = (1/2)*(this.dimensions.height);
 
         this.character = new Image();
-        this.character.src = './dist/assets/character.png';
+        this.character.src = './dist/assets/character2.png';
         // this.character = new Image();
         // this.character.src = './dist/assets/ghost-sheet.png';
 
@@ -85,12 +85,14 @@ export default class Bird {
         //     top: this.y,
         //     bottom: this.y + CONSTANTS.BIRD_HEIGHT,
         // })
+        const scaledWidth = CONSTANTS.scale * CONSTANTS.width;
+        const scaledHeight = CONSTANTS.scale * CONSTANTS.height;
 
         return ({
             left: this.x,
-            right: this.x + CONSTANTS.BIRD_WIDTH,
+            right: this.x + scaledWidth,
             top: this.y, 
-            bottom: this.y + CONSTANTS.BIRD_HEIGHT,
+            bottom: this.y + scaledHeight,
         })
     }
 
@@ -101,6 +103,7 @@ export default class Bird {
         let belowBottom = bounds.bottom >= this.dimensions.height;
         // console.log("bird height", this.y + CONSTANTS.BIRD_HEIGHT)
         // console.log("height", this.dimensions.height)
+        // console.log(bounds)
         return overTop || belowBottom;
     }
 }

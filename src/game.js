@@ -21,6 +21,8 @@ export default class FlappyBird {
     this.backBoat.src = './dist/assets/boat-far.png';
     this.frontBoat = new Image();
     this.frontBoat.src = './dist/assets/boat-middle.png';
+    this.obstacle = new Image();
+    this.obstacle.src = './dist/assets/spikes.png';
 
 
     this.click = this.click.bind(this);
@@ -45,7 +47,7 @@ export default class FlappyBird {
   animate() {
     // this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
     
-    this.level.animate(this.ctx, this.water, this.back, this.middle, this.front, this.backBoat, this.frontBoat);
+    this.level.animate(this.ctx, this.water, this.back, this.middle, this.front, this.backBoat, this.frontBoat, this.obstacle);
     this.bird.animate(this.ctx, this.frameCount);
 
     this.frameCount++
