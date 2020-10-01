@@ -22,7 +22,7 @@ export default class FlappyBird {
     this.frontBoat = new Image();
     this.frontBoat.src = './dist/assets/boat-middle.png';
     this.obstacle = new Image();
-    this.obstacle.src = './dist/assets/spikes.png';
+    this.obstacle.src = './dist/assets/Spikes.png';
 
 
     this.click = this.click.bind(this);

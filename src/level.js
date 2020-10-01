@@ -2,10 +2,12 @@ const CONSTANTS = {
   PIPE_SPEED: 2,
   // GAP_HEIGHT: 150,
   // PIPE_WIDTH: 50,
-  PIPE_WIDTH: 115,
+  PIPE_WIDTH: 32,
+  PIPE_HEIGHT: 32,
   EDGE_BUFFER: 250,
   PIPE_SPACING: 220, //horizontal spacing btwn pipes
-  WARM_UP_SECONDS: 1
+  WARM_UP_SECONDS: 1,
+  SCALE: 3
 };
 
 export default class Level {
@@ -25,14 +27,15 @@ export default class Level {
   randomPipe(x) {
     const heightRange = this.dimensions.height - (2 * CONSTANTS.EDGE_BUFFER)
     const gapTop = (Math.random() * heightRange) + CONSTANTS.EDGE_BUFFER;
-    
-    
+    const scaledWidth = CONSTANTS.SCALE * CONSTANTS.PIPE_WIDTH;
+    const scaledHeight = CONSTANTS.SCALE * CONSTANTS.PIPE_HEIGHT;
+
     const pipe = {
       bottomPipe: {
         left: x,
-        right: x + CONSTANTS.PIPE_WIDTH,
+        right: x + scaledWidth,
         top: gapTop,
-        bottom: gapTop + 132,
+        bottom: gapTop + scaledHeight,
       }
     }
     
@@ -84,7 +87,9 @@ export default class Level {
       //   );
 
       // console.log(pipe)
-      ctx.drawImage(obstacle, 0, 0, 32, 32, pipe.bottomPipe.left, pipe.bottomPipe.top, CONSTANTS.PIPE_WIDTH, pipe.bottomPipe.bottom - pipe.bottomPipe.top)
+      const scaledWidth = CONSTANTS.SCALE * CONSTANTS.PIPE_WIDTH;
+      const scaledHeight = CONSTANTS.SCALE * CONSTANTS.PIPE_HEIGHT;
+      ctx.drawImage(obstacle, 0, 0, 32, 32, pipe.bottomPipe.left, pipe.bottomPipe.top, scaledWidth, scaledHeight)
     })
   }
 
@@ -99,12 +104,16 @@ export default class Level {
   }
 
   overlap(pipe, bird) {
-    if (bird.right >= pipe.left && bird.right <= pipe.right && bird.bottom >= pipe.top) {
-      console.log("overlap")
+    if (bird.right >= pipe.left && bird.right <= pipe.right && bird.bottom >= pipe.top && bird.bottom <= pipe.bottom) {
+      // console.log("overlap")
       console.log("pipe", pipe)
       console.log("bird", bird)
       return true
-    } 
+    } //else if (bird.right >= pipe.left && bird.right <= pipe.right && bird.top >= pipe.top || bird.top <= pipe.bottom ) {
+    //   console.log("pipe", pipe)
+    //   console.log("bird", bird)
+    //   return true
+    // }
 
     return false;
 
