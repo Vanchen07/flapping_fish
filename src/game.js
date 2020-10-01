@@ -37,6 +37,7 @@ export default class FlappyBird {
 
   restart() {
     this.running = false;
+    this.score = 0;
     this.level = new Level(this.dimensions);
     this.bird = new Bird(this.dimensions);
 
@@ -61,9 +62,26 @@ export default class FlappyBird {
       this.restart();
     }
 
+    this.level.passedPipe(this.bird.getBounds(), () => {
+      this.score += 1;
+      console.log(this.score);
+    });
+
+    this.drawScore();
+
     if (this.running) {
       requestAnimationFrame(this.animate)
     }
+  }
+
+  drawScore() {
+    const loc = { x: this.dimensions.width / 2, y: this.dimensions.height / 4 }
+    this.ctx.font = "bold 50pt serif";
+    this.ctx.fillStyle = "white";
+    this.ctx.fillText(this.score, loc.x, loc.y);
+    this.ctx.strokeStyle = "black";
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeText(this.score, loc.x, loc.y);
   }
 
   gameOver() {

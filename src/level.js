@@ -3,8 +3,8 @@ const CONSTANTS = {
   // GAP_HEIGHT: 150,
   // PIPE_WIDTH: 50,
   PIPE_WIDTH: 32,
-  PIPE_HEIGHT: 32,
-  EDGE_BUFFER: 250,
+  PIPE_HEIGHT: 16,
+  EDGE_BUFFER: 200,
   PIPE_SPACING: 220, //horizontal spacing btwn pipes
   WARM_UP_SECONDS: 1,
   SCALE: 3
@@ -36,7 +36,8 @@ export default class Level {
         right: x + scaledWidth,
         top: gapTop,
         bottom: gapTop + scaledHeight,
-      }
+      },
+      passed: false
     }
     
     return pipe
@@ -86,10 +87,9 @@ export default class Level {
       //   pipe.bottomPipe.bottom - pipe.bottomPipe.top
       //   );
 
-      // console.log(pipe)
-      const scaledWidth = CONSTANTS.SCALE * CONSTANTS.PIPE_WIDTH;
-      const scaledHeight = CONSTANTS.SCALE * CONSTANTS.PIPE_HEIGHT;
-      ctx.drawImage(obstacle, 0, 0, 32, 32, pipe.bottomPipe.left, pipe.bottomPipe.top, scaledWidth, scaledHeight)
+      let width = pipe.bottomPipe.right - pipe.bottomPipe.left;
+      let height = pipe.bottomPipe.bottom - pipe.bottomPipe.top;
+      ctx.drawImage(obstacle, 0, 16, 32, 16, pipe.bottomPipe.left, pipe.bottomPipe.top, width, height)
     })
   }
 
@@ -118,5 +118,17 @@ export default class Level {
     return false;
 
   }
+
+  passedPipe(bird, callback) {
+    this.pipes.forEach((pipe) => {
+      if (pipe.bottomPipe.right < bird.left) {
+        if (!pipe.passed) {
+          pipe.passed = true;
+          callback();
+        }
+      }
+    });
+  }
+
 }
 
