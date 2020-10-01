@@ -2,7 +2,7 @@
 const CONSTANTS = {
     BIRD_WIDTH: 30,
     BIRD_HEIGHT: 40,
-    scale: 2,
+    scale: 3,
     width: 32,
     height: 32,
 }
