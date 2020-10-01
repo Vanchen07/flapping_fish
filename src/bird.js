@@ -2,7 +2,7 @@
 const CONSTANTS = {
     BIRD_WIDTH: 30,
     BIRD_HEIGHT: 40,
-    scale: 3,
+    scale: 2.5,
     width: 32,
     height: 32,
 }
@@ -16,6 +16,8 @@ export default class Bird {
 
         this.character = new Image();
         this.character.src = './dist/assets/character.png';
+        // this.character = new Image();
+        // this.character.src = './dist/assets/ghost-sheet.png';
 
         this.drawFrame = this.drawFrame.bind(this)
         this.drawBird = this.drawBird.bind(this)
@@ -37,7 +39,7 @@ export default class Bird {
 
         this.drawFrame(cycleLoop[this.currentLoopIndex], 0, this.x, this.y, ctx);
         
-        console.log(cycleLoop[this.currentLoopIndex])
+        // console.log(cycleLoop[this.currentLoopIndex])
         
         if (frameCount === 1) {
             this.currentLoopIndex++;
@@ -55,8 +57,9 @@ export default class Bird {
         const scaledWidth = CONSTANTS.scale * CONSTANTS.width;
         const scaledHeight = CONSTANTS.scale * CONSTANTS.height;
         
-
-        ctx.drawImage(this.character, frameX * CONSTANTS.width, frameY * CONSTANTS.height, CONSTANTS.width, CONSTANTS.height, canvasX, canvasY, scaledWidth, scaledHeight)
+        // this.character.onload = () => {
+            ctx.drawImage(this.character, frameX * CONSTANTS.width, frameY * CONSTANTS.height, CONSTANTS.width, CONSTANTS.height, canvasX, canvasY, scaledWidth, scaledHeight)
+        // }
     }
 
     animate(ctx, frameCount) {

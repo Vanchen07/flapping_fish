@@ -18,6 +18,7 @@ export default class Level {
       this.randomPipe(firstPipe + CONSTANTS.PIPE_SPACING), 
       this.randomPipe(firstPipe + (CONSTANTS.PIPE_SPACING * 2))
     ];
+
   }
 
   randomPipe(x) {
@@ -34,24 +35,27 @@ export default class Level {
       }
     }
     
-    // console.log("heightrange", heightRange)
-    // console.log("gaptop", gapTop)
-    // if (pipe.bottomPipe.bottom - pipe.bottomPipe.top > 400) console.log("diff", pipe.bottomPipe.bottom - pipe.bottomPipe.top)
-    // console.log("canvas", this.dimensions)
-    // console.log("pipe", pipe)
-    // console.log(pipe.bottomPipe.left)
     return pipe
   }
 
-  drawBackground(ctx) { 
-    ctx.fillStyle = "lightblue";
-    ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+  drawBackground(ctx, water, back, middle, front, backBoat, frontBoat) { 
+    // ctx.fillStyle = "lightblue";
+    // ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+    
+    // ctx.clearRect(0,0, this.dimensions.width, this.dimensions.height)
+      ctx.drawImage(water, 0, 0, 288, 208, 0, 0, this.dimensions.width, this.dimensions.height )
+      ctx.drawImage(back, 0, 0, 32, 112, 0, 0.6 * this.dimensions.height, this.dimensions.width, 0.6 * this.dimensions.height )
+      ctx.drawImage(backBoat, 0, 0, 44, 36, 0.6 * this.dimensions.width, 0.57 * this.dimensions.height, 44, 36 )
+      ctx.drawImage(middle, 0, 0, 64, 112, 0, 0.65 * this.dimensions.height, this.dimensions.width, 0.65 * this.dimensions.height )
+      ctx.drawImage(frontBoat, 0, 0, 76, 59, 0.10 * this.dimensions.width, 0.7 * this.dimensions.height, 76, 59 )
+      ctx.drawImage(front, 0, 0, 144, 80, 0, 0.75 * this.dimensions.height, this.dimensions.width, 0.75 * this.dimensions.height )
+    //
   }
 
-  animate(ctx) {
-    this.drawBackground(ctx);
+  animate(ctx, water, back, middle, front, backBoat, frontBoat) {
+    this.drawBackground(ctx, water, back, middle, front, backBoat, frontBoat);
     this.movePipes();
-    this.drawPipes(ctx);
+    // this.drawPipes(ctx);
   }
 
   movePipes() {
@@ -76,20 +80,18 @@ export default class Level {
         pipe.bottomPipe.top,
         CONSTANTS.PIPE_WIDTH,
         pipe.bottomPipe.bottom - pipe.bottomPipe.top
-      );
+        );
+
     })
   }
 
   collidesWith(bird) {
     let collison = false;
-    
-    // console.log("bird", bird)
 
     this.pipes.forEach((pipe) => {
       if (this.overlap(pipe.bottomPipe, bird)) collison = true
     })
 
-    // console.log("collison", collison)
     return collison;
   }
 
