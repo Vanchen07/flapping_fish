@@ -1,0 +1,19 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightsteelblue;
+}
+
+h1 {
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+p {
+    color: black;
+    font-family: 'Helvetica', sans-serif;
+    margin-top: 0;
+    margin-bottom: 20px;
+}

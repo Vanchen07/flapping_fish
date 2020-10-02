@@ -76,12 +76,12 @@ export default class FlappyBird {
 
   drawScore() {
     const loc = { x: this.dimensions.width / 2, y: this.dimensions.height / 4 }
-    this.ctx.font = "bold 50pt serif";
+    this.ctx.font = "bold 40pt Helvetica";
     this.ctx.fillStyle = "white";
     this.ctx.fillText(this.score, loc.x, loc.y);
-    this.ctx.strokeStyle = "black";
+    // this.ctx.strokeStyle = "slategray";
     this.ctx.lineWidth = 2;
-    this.ctx.strokeText(this.score, loc.x, loc.y);
+    // this.ctx.strokeText(this.score, loc.x, loc.y);
   }
 
   gameOver() {
